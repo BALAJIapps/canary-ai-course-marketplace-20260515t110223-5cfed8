@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: canary-ai-course-marketplace-20260515t110223-5cfed8 # This should match the repo name or Render service name
+    env: NODE
+    rootDir: /
+    buildCommand: pnpm install --no-frozen-lockfile --prod=false && pnpm build
+    startCommand: pnpm exec next start -H 0.0.0.0 -p $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        from1Database:
+          name: round-king-88017258
+          property: connectionString
+      - key: BETTER_AUTH_SECRET
+        generateValue: true
+      - key: AI_GATEWAY_URL
+        value: https://generativelanguage.googleapis.com/v1beta/openai
+      - key: AI_JSON_MODEL
+        value: gemini-2.5-flash
+      - key: AI_TEXT_MODEL
+        value: gemini-2.5-flash
