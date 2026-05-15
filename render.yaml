@@ -8,7 +8,7 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: DATABASE_URL
-        from1Database:
+        fromDatabase:
           name: round-king-88017258
           property: connectionString
       - key: BETTER_AUTH_SECRET
